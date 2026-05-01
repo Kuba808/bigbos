@@ -28,8 +28,8 @@ Oficiální webové stránky hudebního festivalu Bigboš Křinice s oranžovo-b
 - Navigace funguje i z podstránek zpět na kotvy hlavní stránky
 
 ### 4. Obrázky
-- Optimalizované v `/src/assets/` (používané v produkci)
-- Originály v `/src/imports/` (backup, NEMAZAT)
+- `/src/assets/` — optimalizované obrázky (galerie, headliner Rest)
+- `/src/imports/` — **aktivně používané obrázky** (sponzoři, promo fota interpretů, putovani) + originály jako backup. Komponenty `Sponsors.tsx`, `Lineup.tsx`, `Info.tsx` importují přímo odsud přes `?url` suffix. **MUSÍ být v gitu** (build by selhal).
 - Interpreti: 800×800px, quality 85%, progressive JPEG
 - Galerie: max 1200px, quality 85%, progressive JPEG
 
@@ -67,8 +67,9 @@ Oficiální webové stránky hudebního festivalu Bigboš Křinice s oranžovo-b
 
 ### Přidání nového interpreta
 1. Optimalizuj fotku (800×800px, quality 85%)
-2. Ulož do `/src/assets/artists/nazev.jpg`
-3. Import v `/src/app/components/Lineup.tsx`
+2. Ulož do `/src/imports/nazev_promo.jpg` (stávající interpreti tam jsou)
+   nebo `/src/assets/artists/nazev.jpg` (preferované pro nové)
+3. Import v `/src/app/components/Lineup.tsx` s `?url` suffixem pro imports
 4. Přidej do pole `artists` nebo `kidsProgram`
 
 ```tsx
@@ -94,6 +95,7 @@ Edituj `/src/app/components/Tickets.tsx` v poli `tickets`:
 ```
 
 ### Přidání/odebrání sponzora
+Loga sponzorů jsou v `/src/imports/` (importováno přes `?url`).
 Edituj `/src/app/components/Sponsors.tsx` v poli `sponsors`:
 ```tsx
 {
@@ -121,7 +123,8 @@ Edituj `/src/app/components/Sponsors.tsx` v poli `sponsors`:
 ## ⚠️ Důležitá pravidla
 
 ### ❌ NIKDY
-- Nemazat složku `/src/imports/` (backup originálů)
+- Nemazat složku `/src/imports/` (komponenty z ní importují aktivní obrázky — build by selhal)
+- Nepřidávat `/src/imports/` do `.gitignore` (musí být v repu pro CI build)
 - Nepřidávat font importy mimo `/src/styles/fonts.css`
 - Nevytvářet `tailwind.config.js` (používáme Tailwind v4)
 - Nepoužívat `font-size`, `font-weight` Tailwind classes (pokud neuživatel nepožaduje)
