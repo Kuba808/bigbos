@@ -9,9 +9,6 @@ dist/
 .env
 .env.*
 
-# Backup originals — commit only optimized assets in src/assets/
-src/imports/
-
 # OS
 .DS_Store
 Thumbs.db
