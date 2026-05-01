@@ -152,7 +152,7 @@ const ArtistCard = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ delay: index * 0.05 }}
-    className="group relative overflow-hidden rounded-2xl aspect-[16/10] shadow-xl bg-slate-900"
+    className="group relative overflow-hidden rounded-2xl aspect-[4/5] sm:aspect-[4/3] md:aspect-[16/10] shadow-xl bg-slate-900"
   >
     {isPlaying ? (
       <YouTubeEmbed
@@ -171,13 +171,13 @@ const ArtistCard = ({
 
         <VideoOverlay onPlay={onPlay} />
 
-        <div className="absolute bottom-0 left-0 p-8 pointer-events-none">
+        <div className="absolute bottom-0 inset-x-0 p-5 sm:p-6 md:p-8 pointer-events-none">
           {(artist.headliner || artist.badge) && (
-            <span className="inline-block px-3 py-1 bg-orange-600 text-white text-xs font-bold tracking-wider rounded-full mb-3">
+            <span className="inline-block px-3 py-1 bg-orange-600 text-white text-xs font-bold tracking-wider rounded-full mb-2 md:mb-3">
               {artist.badge ?? "HEADLINER"}
             </span>
           )}
-          <h3 className="font-display text-3xl md:text-4xl font-bold text-white mb-2">
+          <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1 md:mb-2">
             {artist.name}
           </h3>
           {artist.genre && (

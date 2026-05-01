@@ -64,8 +64,8 @@ export const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white text-lg px-10 py-6 rounded-full shadow-lg shadow-orange-600/30 transform hover:scale-105 transition-all duration-300">
-            {heroContent.ctaLabel}
+          <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 text-white text-lg px-10 py-6 rounded-full shadow-lg shadow-orange-600/30 transform hover:scale-105 transition-all duration-300">
+            <a href="#tickets">{heroContent.ctaLabel}</a>
           </Button>
         </motion.div>
       </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 // === EDITOVATELNÝ OBSAH PATIČKY ===
 const footerContent = {
@@ -38,6 +38,7 @@ const footerContent = {
 };
 
 export const Footer = () => {
+  const navigate = useNavigate();
   return (
     <footer className="bg-slate-950 text-white py-16">
       <div className="container mx-auto px-4">
@@ -86,13 +87,43 @@ export const Footer = () => {
                     <Link
                       to={link.url}
                       className="hover:text-white transition-colors"
+                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     >
                       {link.label}
                     </Link>
                   ) : (
                     <a
-                      href={link.url}
+                      href={`/${link.url}`}
                       className="hover:text-white transition-colors"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (window.location.pathname !== '/') {
+                          navigate('/');
+                          setTimeout(() => {
+                            const element = document.querySelector(link.url);
+                            if (element) {
+                              const offset = 80;
+                              const elementPosition = element.getBoundingClientRect().top;
+                              const offsetPosition = elementPosition + window.scrollY - offset;
+                              window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                              });
+                            }
+                          }, 100);
+                        } else {
+                          const element = document.querySelector(link.url);
+                          if (element) {
+                            const offset = 80;
+                            const elementPosition = element.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.scrollY - offset;
+                            window.scrollTo({
+                              top: offsetPosition,
+                              behavior: "smooth"
+                            });
+                          }
+                        }
+                      }}
                     >
                       {link.label}
                     </a>
