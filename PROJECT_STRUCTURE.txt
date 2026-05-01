@@ -1,0 +1,73 @@
+.
+|-- guidelines
+|   `-- Guidelines.md
+|-- public
+|-- scripts
+|   `-- optimize-images.mjs
+|-- src
+|   |-- app
+|   |   |-- components
+|   |   |-- pages
+|   |   |-- App.tsx
+|   |   |-- Attributions.md
+|   |   `-- routes.ts
+|   |-- assets
+|   |   |-- artists
+|   |   `-- gallery
+|   |-- imports
+|   |   |-- 10_global.jpg
+|   |   |-- 11_walzel.jpg
+|   |   |-- 1200_(10).jpg
+|   |   |-- 1200_(11).jpg
+|   |   |-- 1200_(7).jpg
+|   |   |-- 12_lazor.jpg
+|   |   |-- 12_silnice_svoboda.jpg
+|   |   |-- 13_bsb.jpg
+|   |   |-- 1_khk.jpg
+|   |   |-- 2_broumov.jpg
+|   |   |-- 3_b2028.jpg
+|   |   |-- 4_mk.jpg
+|   |   |-- 504380558_1620158205977368_8239992180346724155_n.jpg
+|   |   |-- 505936855_1620159652643890_5498950889047124254_n.jpg
+|   |   |-- 524594687_1620158692643986_8016876327540052617_n.jpg
+|   |   |-- 524641429_1620158639310658_9062421298037032507_n.jpg
+|   |   |-- 525027250_1620159502643905_8265250286085244012_n.jpg
+|   |   |-- 525313315_1620159009310621_8917587426193589823_n.jpg
+|   |   |-- 525654645_1620158579310664_743639291883632205_n.jpg
+|   |   |-- 525802603_1620157779310744_6554725894319167157_n.jpg
+|   |   |-- 525977816_1620158072644048_6197102827572622022_n.jpg
+|   |   |-- 526673456_1620159439310578_7027071080478480162_n.jpg
+|   |   |-- 5_inprotec.jpg
+|   |   |-- 6_hobra.jpg
+|   |   |-- 7_nutricius.jpg
+|   |   |-- 8_ztrade.jpg
+|   |   |-- 9_analogStore.jpg
+|   |   |-- Imodium_promo.jpg
+|   |   |-- Piskomil_promo.jpg
+|   |   |-- Promofoto_FastFood.jpg
+|   |   |-- Rest_3.jpg
+|   |   |-- Rest_3_up.jpg
+|   |   |-- detsky_program.jpg
+|   |   |-- image-1.png
+|   |   |-- image-2.png
+|   |   |-- image.png
+|   |   |-- kluci_promo.jpg
+|   |   `-- putovani.jpg
+|   `-- styles
+|       |-- default_theme.css
+|       |-- fonts.css
+|       |-- globals.css
+|       `-- index.css
+|-- ATTRIBUTIONS.md
+|-- CLAUDE.md
+|-- PROJECT_STRUCTURE.txt
+|-- README.md
+|-- __figma__entrypoint__.ts
+|-- default_shadcn_theme.css
+|-- package.json
+|-- pnpm-lock.yaml
+|-- pnpm-workspace.yaml
+|-- postcss.config.mjs
+`-- vite.config.ts
+
+12 directories, 58 files

@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Local dev
+*.local
+.env
+.env.*
+
+# Backup originals — commit only optimized assets in src/assets/
+src/imports/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
