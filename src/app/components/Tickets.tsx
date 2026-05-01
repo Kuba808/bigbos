@@ -15,7 +15,7 @@ const tickets = [
     price: '490 Kč',
     priceColor: 'text-orange-500',
     features: ['Vstup na celý festival', 'Stanování zdarma'],
-    cta: { label: 'Koupit', url: '#', disabled: false },
+    cta: { label: 'Koupit', url: 'https://www.smsticket.cz/vstupenky/70434-bigbos-krinice-2026-21-rocnik', disabled: false },
     highlight: true,
   },
   {
@@ -24,7 +24,7 @@ const tickets = [
     price: '190 Kč',
     priceColor: 'text-orange-400',
     features: ['Vstup na celý festival', 'Stanování zdarma'],
-    cta: { label: 'Koupit', url: '#', disabled: false },
+    cta: { label: 'Koupit', url: 'https://www.smsticket.cz/vstupenky/70434-bigbos-krinice-2026-21-rocnik', disabled: false },
     highlight: true,
   },
   {
@@ -72,9 +72,8 @@ export const Tickets = () => {
           {tickets.map((ticket) => (
             <div
               key={`${ticket.title}-${ticket.subtitle}`}
-              className={`bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6 flex flex-col transition-colors ${
-                ticket.highlight ? 'hover:border-orange-500/50' : ''
-              }`}
+              className={`bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6 flex flex-col transition-colors ${ticket.highlight ? 'hover:border-orange-500/50' : ''
+                }`}
             >
               <div className="mb-4">
                 <h3 className="font-display text-xl font-bold">{ticket.title}</h3>
