@@ -146,53 +146,89 @@ const ArtistCard = ({
   isPlaying,
   onPlay,
   onClose,
-}: ArtistCardProps) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay: index * 0.05 }}
-    className="group relative overflow-hidden rounded-2xl aspect-[4/5] sm:aspect-[4/3] md:aspect-[16/10] shadow-xl bg-slate-900"
-  >
-    {isPlaying ? (
-      <YouTubeEmbed
-        videoId={artist.youtubeId}
-        onClose={onClose}
-        className="absolute inset-0 z-20"
-      />
-    ) : (
-      <>
-        <img
-          src={artist.image}
-          alt={artist.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90"
+}: ArtistCardProps) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.05 }}
+      className="group relative overflow-hidden rounded-2xl aspect-[3/4] sm:aspect-[4/5] md:aspect-square lg:aspect-[4/3] shadow-xl bg-slate-900"
+    >
+      {isPlaying ? (
+        <YouTubeEmbed
+          videoId={artist.youtubeId}
+          onClose={onClose}
+          className="absolute inset-0 z-20"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-80" />
+      ) : (
+        <>
+          <img
+            src={artist.image}
+            alt={artist.name}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90"
+          />
+          <div 
+            className={`absolute inset-0 bg-gradient-to-t from-slate-900 ${
+              isExpanded ? 'via-slate-900/90 to-slate-900/50' : 'via-slate-900/20 to-transparent'
+            } transition-colors duration-300 opacity-90`} 
+          />
 
-        <VideoOverlay onPlay={onPlay} />
+          <VideoOverlay onPlay={onPlay} />
 
-        <div className="absolute bottom-0 inset-x-0 p-5 sm:p-6 md:p-8 pointer-events-none">
-          {(artist.headliner || artist.badge) && (
-            <span className="inline-block px-3 py-1 bg-orange-600 text-white text-xs font-bold tracking-wider rounded-full mb-2 md:mb-3">
-              {artist.badge ?? "HEADLINER"}
-            </span>
-          )}
-          <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1 md:mb-2">
-            {artist.name}
-          </h3>
-          {artist.genre && (
-            <p className="text-slate-300 mb-4">
-              {artist.genre}
-            </p>
-          )}
-          <p className="text-slate-200 text-sm md:text-base max-w-md line-clamp-2">
-            {artist.description}
-          </p>
-        </div>
-      </>
-    )}
-  </motion.div>
-);
+          <div className="absolute inset-0 p-5 sm:p-6 md:p-8 flex flex-col justify-end pointer-events-none z-20">
+            <div className="mt-auto pointer-events-none shrink-0">
+              {(artist.headliner || artist.badge) && (
+                <span className="inline-block px-3 py-1 bg-orange-600 text-white text-xs font-bold tracking-wider rounded-full mb-2 md:mb-3">
+                  {artist.badge ?? "HEADLINER"}
+                </span>
+              )}
+              <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1 md:mb-2">
+                {artist.name}
+              </h3>
+              {artist.genre && (
+                <p className="text-slate-300 mb-2 md:mb-3">
+                  {artist.genre}
+                </p>
+              )}
+            </div>
+
+            <div 
+              className={`pointer-events-auto transition-all duration-300 ${
+                isExpanded ? 'overflow-y-auto pr-2' : 'overflow-hidden'
+              }`}
+              style={isExpanded ? { maxHeight: '60%' } : {}}
+            >
+              <p 
+                className={`text-slate-200 text-sm md:text-base max-w-md ${
+                  isExpanded ? '' : 'line-clamp-2'
+                }`}
+              >
+                {artist.description}
+              </p>
+            </div>
+
+            {artist.description.length > 80 && (
+              <div className="pt-2 shrink-0 pointer-events-auto">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsExpanded(!isExpanded);
+                  }}
+                  className="text-sm text-orange-400 font-bold hover:text-orange-300 transition-colors uppercase tracking-wider"
+                >
+                  {isExpanded ? 'Méně' : 'Více'}
+                </button>
+              </div>
+            )}
+          </div>
+        </>
+      )}
+    </motion.div>
+  );
+};
 
 export const Lineup = () => {
   const [playingArtist, setPlayingArtist] = useState<
