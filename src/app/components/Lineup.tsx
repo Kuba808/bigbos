@@ -42,7 +42,7 @@ const artists: Artist[] = [
     genre: "Alternative Rock",
     image: imodiumImg,
     description:
-      "Domácí kapela Imodium se na Bigboš vrací také po 16 letech. Za tu dobu stihli několikrát obměnit svou sestavu, dát si také malou pauzu, ale hlavně nahrát několik úspěšných alb a odehrát stovky koncertů – například samostatný koncert ve Fórum Karlín či akustický koncert v pražské Spirále. Předskakovali Avril Lavigne, Simple Plan či Muse. Mnohokrát zvítězili v Žebřík Music Awards a deska Horizont byla nominována na cenu Anděl.",
+      "Domácí kapela Imodium se na Bigboš vrací také po 16 letech. Za tu dobu stihli několikrát obměnit svou sestavu, dát si také malou pauzu, ale hlavně nahrát několik úspěšných alb a odehrát stovky koncertů – například samostatný koncert ve Fórum Karlín či akustický koncert v pražské Spirále. Předskakovali Avril Lavigne, Simple Plan či Muse. Deska Horizont byla nominována na cenu Anděl.",
     youtubeId: "5h_mlypwFEw?si=w6EMCgr0zqrCbeBH",
   },
   {
@@ -170,10 +170,9 @@ const ArtistCard = ({
             alt={artist.name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90"
           />
-          <div 
-            className={`absolute inset-0 bg-gradient-to-t from-slate-900 ${
-              isExpanded ? 'via-slate-900/90 to-slate-900/50' : 'via-slate-900/20 to-transparent'
-            } transition-colors duration-300 opacity-90`} 
+          <div
+            className={`absolute inset-0 bg-gradient-to-t from-slate-900 ${isExpanded ? 'via-slate-900/90 to-slate-900/50' : 'via-slate-900/20 to-transparent'
+              } transition-colors duration-300 opacity-90`}
           />
 
           <VideoOverlay onPlay={onPlay} />
@@ -195,16 +194,14 @@ const ArtistCard = ({
               )}
             </div>
 
-            <div 
-              className={`pointer-events-auto transition-all duration-300 ${
-                isExpanded ? 'overflow-y-auto pr-2' : 'overflow-hidden'
-              }`}
+            <div
+              className={`pointer-events-auto transition-all duration-300 ${isExpanded ? 'overflow-y-auto pr-2' : 'overflow-hidden'
+                }`}
               style={isExpanded ? { maxHeight: '60%' } : {}}
             >
-              <p 
-                className={`text-slate-200 text-sm md:text-base max-w-md ${
-                  isExpanded ? '' : 'line-clamp-2'
-                }`}
+              <p
+                className={`text-slate-200 text-sm md:text-base max-w-md ${isExpanded ? '' : 'line-clamp-2'
+                  }`}
               >
                 {artist.description}
               </p>
