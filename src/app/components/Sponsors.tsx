@@ -14,23 +14,25 @@ import logoWalzel from '../../imports/11_walzel.jpg?url';
 import logoSvoboda from '../../imports/12_silnice_svoboda.jpg?url';
 import logoLazor from '../../imports/12_lazor.jpg?url';
 import logoBsb from '../../imports/13_bsb.jpg?url';
+import logoNaseBroumovsko from '../../imports/nase_broumovsko.jpg?url';
 
 // === EDITOVATELNÝ SEZNAM SPONZORŮ ===
 const sponsors = [
-  { name: 'Královéhradecký kraj', role: 'Realizováno za finanční podpory Královéhradeckého kraje', logo: logoKhk, url: 'https://www.kr-kralovehradecky.cz/' },
+  { name: 'Královéhradecký kraj', role: 'Realizováno za finanční podpory Královéhradeckého kraje', logo: logoKhk, url: 'https://khk.cz/' },
   { name: 'Město Broumov', role: 'Generální partner', logo: logoBroumov, url: 'https://www.broumov.net/' },
   { name: 'Broumov 2028+', role: 'Generální partner', logo: logoB2028, url: 'https://www.broumov2028.cz/' },
   { name: 'Ministerstvo kultury', role: 'Generální partner', logo: logoMk, url: 'https://www.mkcr.cz/' },
-  { name: 'Inprotec', role: 'Generální partner', logo: logoInprotec, url: 'http://www.inprotec-sro.cz/' },
+  { name: 'Inprotec', role: 'Generální partner', logo: logoInprotec, url: 'https://inprotec.cz/' },
   { name: 'Hobra Školník', role: 'Generální partner', logo: logoHobra, url: 'https://www.hobra.cz/' },
   { name: 'Nutricius', role: 'Hlavní partner', logo: logoNutricius, url: 'https://nutricius.cz/' },
-  { name: 'Z-Trade', role: 'Hlavní partner', logo: logoZtrade, url: 'https://www.z-trade.cz/' },
+  { name: 'Z-Trade', role: 'Hlavní partner', logo: logoZtrade, url: 'https://www.ztrade.cz/' },
   { name: 'Analogstore.cz', role: 'Hlavní partner', logo: logoAnalog, url: 'https://analogstore.cz/' },
   { name: 'GlobalLux.cz', role: 'Hlavní partner', logo: logoGlobal, url: 'https://www.globallux.cz/' },
   { name: 'Centrum Walzel', role: 'Hlavní partner', logo: logoWalzel, url: 'https://www.walzel.cz/' },
   { name: 'Silnice Svoboda', role: 'Hlavní partner', logo: logoSvoboda, url: 'https://www.svoboda-cz.cz/' },
   { name: 'Zdeněk Lazor', role: 'Hlavní partner', logo: logoLazor, url: '#' },
   { name: 'BSB spol. s r.o.', role: 'Hlavní partner', logo: logoBsb, url: 'https://bsb-lisovna.cz/' },
+  { name: 'Naše Broumovsko', role: 'Mediální partner', logo: logoNaseBroumovsko, url: 'https://nasebroumovsko.cz/' },
 ];
 
 export const Sponsors = () => {
@@ -53,19 +55,19 @@ export const Sponsors = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="group flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-slate-100 hover:border-orange-200 h-40"
+              className="group flex flex-col items-center justify-center p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-slate-100 hover:border-orange-200 h-48"
               aria-label={sponsor.name}
             >
-              <div className="flex-1 flex items-center justify-center w-full mb-3 opacity-90 group-hover:opacity-100 transition-opacity">
+              <div className="flex items-center justify-center w-full h-28 mb-3 opacity-90 group-hover:opacity-100 transition-opacity">
                 <img
                   src={sponsor.logo}
                   alt={sponsor.name}
                   loading="lazy"
-                  className="max-h-20 max-w-full object-contain"
+                  className="max-h-full max-w-full object-contain"
                 />
               </div>
-              <div className="text-center w-full border-t border-slate-100 pt-2">
-                <p className="text-slate-500 text-[9px] uppercase tracking-wider font-medium truncate w-full">
+              <div className="text-center w-full border-t border-slate-100 pt-2 min-h-[2.5rem] flex items-center justify-center">
+                <p className="text-slate-500 text-[10px] leading-tight uppercase tracking-wider font-medium line-clamp-2">
                   {sponsor.role}
                 </p>
               </div>
