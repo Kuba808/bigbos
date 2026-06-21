@@ -7,6 +7,9 @@ import imodiumImg from "../../imports/Imodium_promo.jpg?url";
 import kluciImg from "../../imports/kluci_promo.jpg?url";
 import piskomilImg from "../../imports/Piskomil_promo.jpg?url";
 import detskyImg from "../../imports/detsky_program.jpg?url";
+import geraldImg from "../../imports/gerald_promo.jpg?url";
+import joshuaImg from "../../imports/joshua_promo.jpg?url";
+import djbrnImg from "../../imports/djbrn_promo.jpg?url";
 
 type Artist = {
   name: string;
@@ -44,6 +47,30 @@ const artists: Artist[] = [
     description:
       "Domácí kapela Imodium se na Bigboš vrací také po 16 letech. Za tu dobu stihli několikrát obměnit svou sestavu, dát si také malou pauzu, ale hlavně nahrát několik úspěšných alb a odehrát stovky koncertů – například samostatný koncert ve Fórum Karlín či akustický koncert v pražské Spirále. Předskakovali Avril Lavigne, Simple Plan či Muse. Deska Horizont byla nominována na cenu Anděl.",
     youtubeId: "5h_mlypwFEw?si=w6EMCgr0zqrCbeBH",
+  },
+  {
+    name: "Gerald Clark Trio",
+    genre: "Blues / Folk Rock",
+    image: geraldImg,
+    description:
+      "Jihoafrický zpěvák a kytarista Gerald James Clark žije a tvoří v České republice. Nositel Grammy vystupuje v triu s českými muzikanty – kytaristou Jakubem Hlobilem a bubeníkem Antonínem Jínou. Jejich hudba je strhující směs blues, rocku a folk-rocku s výjimečně charismatickým frontmanem, jehož hlas sahá až do duše.",
+    youtubeId: "AZtrRT_mhgk",
+  },
+  {
+    name: "Joshua Curran",
+    genre: "Indie Rock / Singer-Songwriter",
+    image: joshuaImg,
+    description:
+      "Irsko-český zpěvák, skladatel a multi-instrumentalista Joshua Curran uchvacuje nakažlivým rockovým zvukem inspirovaným kapelami The Kooks, Inhaler či Arctic Monkeys. Vyrůstal mezi Prahou a Dublinem a svůj talent potvrdil i na mezinárodní scéně – spolupracoval na arménském příspěvku na Eurovision 2025. Patří k nejzajímavějším hlasům nové generace indie scény.",
+    youtubeId: "CMD9MqYoQvU",
+  },
+  {
+    name: "DJ BRN",
+    genre: "Rap / Trap / Electronic",
+    image: djbrnImg,
+    description:
+      "Broumovský DJ, který roztančí Křinice od prvního beatu. Jeho sety startují americkým a českým rapem a trapem a postupně přechází přes house a drum'n'bass až do tvrdšího techna. Domácí jméno regionální scény, které dobře zná každý, kdo v Broumově někdy slavil.",
+    youtubeId: "usK0BVHKeeY",
   },
   {
     name: "Kluci",
