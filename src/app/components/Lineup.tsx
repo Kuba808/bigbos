@@ -45,7 +45,8 @@ const artists: Artist[] = [
     genre: "Alternative Rock",
     image: imodiumImg,
     description:
-      "Domácí kapela Imodium se na Bigboš vrací také po 16 letech. Za tu dobu stihli několikrát obměnit svou sestavu, dát si také malou pauzu, ale hlavně nahrát několik úspěšných alb a odehrát stovky koncertů – například samostatný koncert ve Fórum Karlín či akustický koncert v pražské Spirále. Předskakovali Avril Lavigne, Simple Plan či Muse. Deska Horizont byla nominována na cenu Anděl.",
+      headliner: true,
+    "Domácí kapela Imodium se na Bigboš vrací také po 16 letech. Za tu dobu stihli několikrát obměnit svou sestavu, dát si také malou pauzu, ale hlavně nahrát několik úspěšných alb a odehrát stovky koncertů – například samostatný koncert ve Fórum Karlín či akustický koncert v pražské Spirále. Předskakovali Avril Lavigne, Simple Plan či Muse. Deska Horizont byla nominována na cenu Anděl.",
     youtubeId: "5h_mlypwFEw?si=w6EMCgr0zqrCbeBH",
   },
   {
