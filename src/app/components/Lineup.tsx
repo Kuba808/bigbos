@@ -279,7 +279,7 @@ export const Lineup = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Line-up 2025
+            Line-up 2026
           </h2>
           <p className="text-slate-600 text-lg max-w-2xl mx-auto">
             Připravili jsme pro vás pestrý mix žánrů. Od popu
