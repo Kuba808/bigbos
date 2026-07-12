@@ -83,6 +83,31 @@ const artists: Artist[] = [
   },
 ];
 
+// === EDITOVATELNÝ OBSAH ČASOVÝ HARMONOGRAM ===
+// stage: "stage" (hlavní pódium) nebo "stan" (stan)
+// highlight: true = zvýrazněný řádek (headliner / hlavní bod)
+type ScheduleItem = {
+  time: string;
+  title: string;
+  stage: "stage" | "stan" | "";
+  highlight?: boolean;
+};
+
+const schedule: ScheduleItem[] = [
+  { time: "12:30", title: "Otevření statku", stage: "" },
+  { time: "13:00 – 13:45", title: "Joshua Curran", stage: "stage" },
+  { time: "13:45 – 14:30", title: "Kuba Hejdánek / Eva Kroupová", stage: "stan" },
+  { time: "14:45 – 15:30", title: "Pískomil se vrací", stage: "stage" },
+  { time: "16:00 – 16:45", title: "Gerald Clark Trio", stage: "stage" },
+  { time: "16:55 – 17:40", title: "Loutkové divadlo Tři prasátka (LokVar)", stage: "stan" },
+  { time: "18:00 – 19:00", title: "REST", stage: "stage", highlight: true },
+  { time: "19:10 – 19:40", title: "Rozhovory", stage: "stan" },
+  { time: "20:00 – 21:00", title: "Fast Food Orchestra", stage: "stage", highlight: true },
+  { time: "21:45 – 22:30", title: "Kluci", stage: "stage" },
+  { time: "23:15 – 00:15", title: "Imodium", stage: "stage", highlight: true },
+  { time: "00:30 – 01:20", title: "DJ BRN", stage: "stage" },
+];
+
 const kidsProgram: Artist[] = [
   {
     name: "Pískomil se vrací",
@@ -157,6 +182,48 @@ const YouTubeEmbed = ({
     >
       <X className="w-6 h-6" />
     </button>
+  </div>
+);
+
+const stageLabels: Record<string, { label: string; className: string }> = {
+  stage: { label: "Stage", className: "bg-orange-600 text-white" },
+  stan: { label: "Stan", className: "bg-green-500 text-white" },
+};
+
+const ScheduleTimeline = () => (
+  <div className="max-w-3xl mx-auto">
+    <ul className="divide-y divide-slate-200 rounded-2xl bg-white shadow-lg overflow-hidden">
+      {schedule.map((item, index) => (
+        <motion.li
+          key={item.time + item.title}
+          initial={{ opacity: 0, x: -10 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.03 }}
+          className={`flex items-center gap-4 px-5 py-4 sm:px-8 ${
+            item.highlight ? "bg-orange-50" : ""
+          }`}
+        >
+          <span className="font-display font-bold text-slate-900 tabular-nums text-sm sm:text-base w-28 sm:w-32 shrink-0">
+            {item.time}
+          </span>
+          <span
+            className={`flex-1 text-slate-800 ${
+              item.highlight ? "font-bold" : ""
+            }`}
+          >
+            {item.title}
+          </span>
+          {item.stage && (
+            <span
+              className={`shrink-0 px-3 py-1 rounded-full text-xs font-bold tracking-wider ${stageLabels[item.stage].className}`}
+            >
+              {stageLabels[item.stage].label}
+            </span>
+          )}
+        </motion.li>
+      ))}
+    </ul>
   </div>
 );
 
@@ -293,6 +360,26 @@ export const Lineup = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
           {others.map(renderCard)}
+        </div>
+
+        <div className="mb-20">
+          <div className="text-center mb-10">
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-slate-900">
+              Časový harmonogram
+            </h3>
+            <p className="text-slate-600 mt-2">
+              Sobota 25. července 2026
+            </p>
+          </div>
+          <ScheduleTimeline />
+          <div className="flex items-center justify-center gap-6 mt-6 text-sm text-slate-600">
+            <span className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-orange-600" /> Stage
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-green-500" /> Stan
+            </span>
+          </div>
         </div>
 
         <div className="bg-orange-50 rounded-3xl p-8 md:p-12">
