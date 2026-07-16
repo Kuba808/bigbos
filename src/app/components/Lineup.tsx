@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { motion } from "motion/react";
 import { PlayCircle, X } from "lucide-react";
 import restImg from "../../assets/artists/rest.jpg";
+import prasatkaImg from "../../assets/artists/prasatka.jpg";
+import jasanImg from "../../assets/artists/jasan.jpg";
+import kubaImg from "../../assets/artists/kuba.jpg";
 import ffoImg from "../../imports/Promofoto_FastFood.jpg?url";
 import imodiumImg from "../../imports/Imodium_promo.jpg?url";
 import kluciImg from "../../imports/kluci_promo.jpg?url";
@@ -18,7 +21,7 @@ type Artist = {
   description: string;
   headliner?: boolean;
   badge?: string;
-  youtubeId: string;
+  youtubeId?: string;
 };
 
 const artists: Artist[] = [
@@ -118,12 +121,32 @@ const kidsProgram: Artist[] = [
     youtubeId: "pguo6ILKxoA?si=ah7ZHveW0tzXY0ur",
   },
   {
+    name: "Tři prasátka",
+    genre: "Loutkové divadlo LokVar",
+    description:
+      "Klasická pohádka o třech prasátkách a velkém zlém vlkovi v podání loutkového divadla LokVar. Ručně vyřezávané marionety, poctivé řemeslo a spousta legrace – představení, které pobaví děti i dospělé a připomene kouzlo tradičního loutkářství.",
+    image: prasatkaImg,
+  },
+  {
+    name: "Lesní klub Jasan",
+    genre: "Tvořivé dílny v přírodě",
+    description:
+      "Lesní klub Jasan si pro děti připraví hravé dílničky v duchu přírody. Tvoření z přírodnin, poznávání rostlin a zvířat, hry a dobrodružství pod širým nebem. Objevování světa všemi smysly pro malé průzkumníky.",
+    image: jasanImg,
+  },
+  {
+    name: "Eva Kroupová a Jakub Hejdánek",
+    genre: "Dětské písničky a pohádky",
+    description:
+      "Písničky a pohádky pro nejmenší v podání Evy Kroupové a Jakuba Hejdánka. Chytlavé melodie, vyprávění a společné zpívání, do kterého se zapojí celá rodina. Pohodové odpoledne plné radosti pro děti i rodiče.",
+    image: kubaImg,
+  },
+  {
     name: "Dětský program",
     genre: "Doprovodný program",
     description:
       "Výstava traktorů, slámová hora, pletení věnců, malování na obličej, skákací hrad, dobrůtky.",
     image: detskyImg,
-    youtubeId: "dQw4w9WgXcQ",
   },
 ];
 
@@ -252,7 +275,7 @@ const ArtistCard = ({
       transition={{ delay: index * 0.05 }}
       className="group relative overflow-hidden rounded-2xl aspect-[3/4] sm:aspect-[4/5] md:aspect-square lg:aspect-[4/3] shadow-xl bg-slate-900"
     >
-      {isPlaying ? (
+      {isPlaying && artist.youtubeId ? (
         <YouTubeEmbed
           videoId={artist.youtubeId}
           onClose={onClose}
@@ -270,7 +293,7 @@ const ArtistCard = ({
               } transition-colors duration-300 opacity-90`}
           />
 
-          <VideoOverlay onPlay={onPlay} />
+          {artist.youtubeId && <VideoOverlay onPlay={onPlay} />}
 
           <div className="absolute inset-0 p-5 sm:p-6 md:p-8 flex flex-col justify-end pointer-events-none z-20">
             <div className="mt-auto pointer-events-none shrink-0">
