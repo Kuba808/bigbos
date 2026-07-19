@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import { PlayCircle, X } from "lucide-react";
-import restImg from "../../assets/artists/rest.jpg";
+import coleImg from "../../assets/artists/cole.jpg";
 import prasatkaImg from "../../assets/artists/prasatka.jpg";
 import jasanImg from "../../assets/artists/jasan.jpg";
 import kubaImg from "../../assets/artists/kuba.jpg";
@@ -26,13 +26,14 @@ type Artist = {
 
 const artists: Artist[] = [
   {
-    name: "Rest",
+    name: "James Cole & Idea",
     genre: "Hip Hop / Rap",
-    image: restImg,
+    image: coleImg,
     description:
-      "Český raper a MC, který od roku 2010 působí v labelu Ty Nikdy. Natočil několik desek, z toho jedna byla nominována na cenu Anděl. Letos se zúčastnil české reality show Survivor.",
+      "Rest bohužel kvůli úrazu nemůže vystoupit. Jako náhrada přijede James Cole & Idea – sehraná dvojice české rapové scény. James Cole je zkušený MC s poctivým old-school flow, Idea patří mezi respektované producenty a beatmakery. Společně rozjedou energickou show, která rozhýbe celý statek.",
     headliner: true,
-    youtubeId: "4vyMm_ATHxA?si=sWXB3TSViLL2VLBQ",
+    badge: "NÁHRADA ZA REST",
+    youtubeId: "JhnSoEspues",
   },
   {
     name: "Fast Food Orchestra",
@@ -98,17 +99,18 @@ type ScheduleItem = {
 
 const schedule: ScheduleItem[] = [
   { time: "12:30", title: "Otevření statku", stage: "" },
-  { time: "13:00 – 13:45", title: "Joshua Curran", stage: "stage" },
-  { time: "13:45 – 14:30", title: "Kuba Hejdánek / Eva Kroupová", stage: "stan" },
-  { time: "14:45 – 15:30", title: "Pískomil se vrací", stage: "stage" },
-  { time: "16:00 – 16:45", title: "Gerald Clark Trio", stage: "stage" },
-  { time: "16:55 – 17:40", title: "Loutkové divadlo Tři prasátka (LokVar)", stage: "stan" },
-  { time: "18:00 – 19:00", title: "REST", stage: "stage", highlight: true },
-  { time: "19:10 – 19:40", title: "Rozhovory", stage: "stan" },
-  { time: "20:00 – 21:00", title: "Fast Food Orchestra", stage: "stage", highlight: true },
-  { time: "21:45 – 22:30", title: "Kluci", stage: "stage" },
-  { time: "23:15 – 00:15", title: "Imodium", stage: "stage", highlight: true },
-  { time: "00:30 – 01:20", title: "DJ BRN", stage: "stage" },
+  { time: "13:00", title: "Joshua Curran", stage: "stage" },
+  { time: "13:50", title: "Eva & Kuba", stage: "stan" },
+  { time: "14:50", title: "Pískomil se vrací", stage: "stage" },
+  { time: "16:15", title: "Gerald Clark Trio", stage: "stage" },
+  { time: "17:05", title: "Loutkové divadlo Tři prasátka", stage: "stan" },
+  { time: "18:10", title: "Kluci", stage: "stage" },
+  { time: "19:05", title: "Rozhovor Fast Food Orchestra", stage: "stan" },
+  { time: "19:55", title: "Fast Food Orchestra", stage: "stage", highlight: true },
+  { time: "21:05", title: "Rozhovor James Cole", stage: "stan" },
+  { time: "21:35", title: "James Cole & Idea", stage: "stage", highlight: true },
+  { time: "23:25", title: "Imodium", stage: "stage", highlight: true },
+  { time: "00:45", title: "DJ BRN", stage: "stage" },
 ];
 
 const kidsProgram: Artist[] = [
@@ -227,7 +229,7 @@ const ScheduleTimeline = () => (
             item.highlight ? "bg-orange-50" : ""
           }`}
         >
-          <span className="font-display font-bold text-slate-900 tabular-nums text-sm sm:text-base w-28 sm:w-32 shrink-0">
+          <span className="font-display font-bold text-slate-900 tabular-nums text-sm sm:text-base w-16 sm:w-20 shrink-0">
             {item.time}
           </span>
           <span
