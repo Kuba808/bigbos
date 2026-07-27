@@ -1,11 +1,17 @@
 import React from 'react';
 import { Check } from 'lucide-react';
 import { Button } from './ui/button';
+import { festivalConfig } from '../config/festival';
 
 // === EDITOVATELNÝ OBSAH SEKCE VSTUPENKY ===
 const ticketsContent = {
   title: 'Vstupenky',
-  subtitle: 'Kupte si lístky v předprodeji za zvýhodněnou cenu a vyhněte se frontám na místě.',
+  // Text když běží předprodej:
+  subtitleOnSale: 'Kupte si lístky v předprodeji za zvýhodněnou cenu a vyhněte se frontám na místě.',
+  // Text když předprodej ještě nezačal (festivalConfig.ticketsOnSale === false):
+  subtitleSoon: 'Předprodej vstupenek na další ročník spustíme brzy. Sledujte nás, ať vám nic neunikne.',
+  soonBadge: 'Brzy v prodeji',
+  soonCtaLabel: 'Brzy v prodeji',
 };
 
 const tickets = [
@@ -64,8 +70,15 @@ export const Tickets = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
+          {!festivalConfig.ticketsOnSale && (
+            <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-orange-600/20 border border-orange-500/40 text-orange-300 text-sm font-bold uppercase tracking-widest">
+              {ticketsContent.soonBadge}
+            </span>
+          )}
           <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">{ticketsContent.title}</h2>
-          <p className="text-slate-200 text-lg max-w-2xl mx-auto">{ticketsContent.subtitle}</p>
+          <p className="text-slate-200 text-lg max-w-2xl mx-auto">
+            {festivalConfig.ticketsOnSale ? ticketsContent.subtitleOnSale : ticketsContent.subtitleSoon}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
@@ -78,7 +91,11 @@ export const Tickets = () => {
               <div className="mb-4">
                 <h3 className="font-display text-xl font-bold">{ticket.title}</h3>
                 <p className="text-slate-300 text-sm mt-1">{ticket.subtitle}</p>
-                <div className={`font-display text-3xl font-bold mt-3 ${ticket.priceColor}`}>{ticket.price}</div>
+                {festivalConfig.ticketsOnSale ? (
+                  <div className={`font-display text-3xl font-bold mt-3 ${ticket.priceColor}`}>{ticket.price}</div>
+                ) : (
+                  <div className="font-display text-xl font-bold mt-3 text-slate-400">Ceny brzy</div>
+                )}
               </div>
               <ul className="space-y-2 mb-6 flex-1">
                 {ticket.features.map((feature) => (
@@ -95,6 +112,14 @@ export const Tickets = () => {
                     disabled
                   >
                     {ticket.cta.label}
+                  </Button>
+                ) : !festivalConfig.ticketsOnSale ? (
+                  <Button
+                    variant="outline"
+                    className="w-full border-orange-500/50 text-orange-300 py-5 text-base cursor-not-allowed opacity-60"
+                    disabled
+                  >
+                    {ticketsContent.soonCtaLabel}
                   </Button>
                 ) : (
                   <Button asChild className="w-full bg-orange-600 hover:bg-orange-700 text-white py-5 text-base">

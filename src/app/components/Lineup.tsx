@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
-import { PlayCircle, X } from "lucide-react";
+import { PlayCircle, X, Music } from "lucide-react";
+import { festivalConfig } from "../config/festival";
+import restImg from "../../assets/artists/rest.jpg";
 import coleImg from "../../assets/artists/cole.jpg";
 import prasatkaImg from "../../assets/artists/prasatka.jpg";
 import jasanImg from "../../assets/artists/jasan.jpg";
@@ -22,18 +24,38 @@ type Artist = {
   headliner?: boolean;
   badge?: string;
   youtubeId?: string;
+  // confirmed: true = interpret se zobrazí na webu.
+  // false / neuvedeno = "neaktivní" (data zůstávají, ale nezobrazí se).
+  confirmed?: boolean;
 };
 
+// === EDITOVATELNÝ OBSAH LINE-UP ===
+// ➕ ODHALENÍ INTERPRETA pro nový ročník:
+//    U daného objektu přepni `confirmed: true`. Tím se karta
+//    zobrazí na webu. Placeholder "Připravujeme" karty (počet
+//    řídí festivalConfig.lineupPlaceholders) postupně snižuj.
+// ➕ NOVÝ INTERPRET: přidej objekt s `confirmed: true`.
+// Interpreti s `confirmed: false` slouží jako archiv/příprava –
+// data zůstávají v kódu, ale na webu se nezobrazí.
 const artists: Artist[] = [
+  {
+    name: "Rest",
+    genre: "Hip Hop / Rap",
+    image: restImg,
+    description:
+      "Český raper a MC, který od roku 2010 působí v labelu Ty Nikdy. Natočil několik desek, z toho jedna byla nominována na cenu Anděl. Letos se zúčastnil české reality show Survivor.",
+    headliner: true,
+    youtubeId: "4vyMm_ATHxA?si=sWXB3TSViLL2VLBQ",
+    confirmed: true,
+  },
   {
     name: "James Cole & Idea",
     genre: "Hip Hop / Rap",
     image: coleImg,
     description:
-      "Rest bohužel kvůli úrazu nemůže vystoupit. Jako náhrada přijede James Cole & Idea – sehraná dvojice české rapové scény. James Cole je zkušený MC s poctivým old-school flow, Idea patří mezi respektované producenty a beatmakery. Společně rozjedou energickou show, která rozhýbe celý statek.",
-    headliner: true,
-    badge: "NÁHRADA ZA REST",
+      "Sehraná dvojice české rapové scény. James Cole je zkušený MC s poctivým old-school flow, Idea patří mezi respektované producenty a beatmakery. Společně rozjedou energickou show, která rozhýbe celý statek.",
     youtubeId: "JhnSoEspues",
+    confirmed: false,
   },
   {
     name: "Fast Food Orchestra",
@@ -43,6 +65,7 @@ const artists: Artist[] = [
       "Fast Food Orchestra se po 16 letech vrací na Bigboš Křinice. Můžete se opět těšit na svěží kombinaci ska, reggae, popu a dalších žánrů. S charakteristickým energickým zvukem, chytlavými melodiemi a pozitivní atmosférou se rychle stali jednou z nejvýraznějších kapel na české hudební scéně.",
     headliner: true,
     youtubeId: "2_YuoaB6_HQ?si=tFOksGDdWtwBRAMX",
+    confirmed: false,
   },
   {
     name: "Imodium",
@@ -52,6 +75,7 @@ const artists: Artist[] = [
       "Domácí kapela Imodium se na Bigboš vrací také po 16 letech. Za tu dobu stihli několikrát obměnit svou sestavu, dát si také malou pauzu, ale hlavně nahrát několik úspěšných alb a odehrát stovky koncertů – například samostatný koncert ve Fórum Karlín či akustický koncert v pražské Spirále. Předskakovali Avril Lavigne, Simple Plan či Muse. Deska Horizont byla nominována na cenu Anděl.",
     headliner: true,
     youtubeId: "5h_mlypwFEw?si=w6EMCgr0zqrCbeBH",
+    confirmed: false,
   },
   {
     name: "Gerald Clark Trio",
@@ -60,6 +84,7 @@ const artists: Artist[] = [
     description:
       "Jihoafrický zpěvák a kytarista Gerald James Clark žije a tvoří v České republice. Nositel Grammy vystupuje v triu s českými muzikanty – kytaristou Jakubem Hlobilem a bubeníkem Antonínem Jínou. Jejich hudba je strhující směs blues, rocku a folk-rocku s výjimečně charismatickým frontmanem, jehož hlas sahá až do duše.",
     youtubeId: "AZtrRT_mhgk",
+    confirmed: false,
   },
   {
     name: "Joshua Curran",
@@ -68,6 +93,7 @@ const artists: Artist[] = [
     description:
       "Irsko-český zpěvák, skladatel a multi-instrumentalista Joshua Curran uchvacuje nakažlivým rockovým zvukem inspirovaným kapelami The Kooks, Inhaler či Arctic Monkeys. Vyrůstal mezi Prahou a Dublinem a svůj talent potvrdil i na mezinárodní scéně – spolupracoval na arménském příspěvku na Eurovision 2025. Patří k nejzajímavějším hlasům nové generace indie scény.",
     youtubeId: "CMD9MqYoQvU",
+    confirmed: false,
   },
   {
     name: "DJ BRN",
@@ -76,6 +102,7 @@ const artists: Artist[] = [
     description:
       "Broumovský DJ, který roztančí Křinice od prvního beatu. Jeho sety startují americkým a českým rapem a trapem a postupně přechází přes house a drum'n'bass až do tvrdšího techna. Domácí jméno regionální scény, které dobře zná každý, kdo v Broumově někdy slavil.",
     youtubeId: "usK0BVHKeeY",
+    confirmed: false,
   },
   {
     name: "Kluci",
@@ -84,6 +111,7 @@ const artists: Artist[] = [
     description:
       "Kapela KLUCI to je diskotéka na entou a punk všude okolo. Kombinace různých elektronických vychytávek a punk rocku dává dohromady energetický mix na vlně kapel jako Hadouken, Does It Offend You, Yeah? a The Death Set. Taneční párty smrti. Sestava KLUCI vznikla v roce 2010 v Křinicích na statku u Broumova.",
     youtubeId: "QuJQoLkJ52A?si=cOkvpxhroILT6DTb",
+    confirmed: false,
   },
 ];
 
@@ -113,6 +141,8 @@ const schedule: ScheduleItem[] = [
   { time: "00:45", title: "DJ BRN", stage: "stage" },
 ];
 
+// Dětský program – stejná logika jako u interpretů: `confirmed: true`
+// zobrazí položku, false/neuvedeno = zatím skryto (data zůstávají).
 const kidsProgram: Artist[] = [
   {
     name: "Pískomil se vrací",
@@ -121,6 +151,7 @@ const kidsProgram: Artist[] = [
       "Pískomil se vrací na Bigboš po 3 letech. Patří k jedné z mála profesionálních kapel, která se věnuje výhradně moderní dětské tvorbě a tvoří mezigenerační zábavu, při které se baví nejen děti, ale i rodiče. Při živelném koncertu si užijete vtipné a originální texty, našlápnuté písničky, barevné kostýmy a skvělou práci s dětským publikem.",
     image: piskomilImg,
     youtubeId: "pguo6ILKxoA?si=ah7ZHveW0tzXY0ur",
+    confirmed: false,
   },
   {
     name: "Tři prasátka",
@@ -128,6 +159,7 @@ const kidsProgram: Artist[] = [
     description:
       "Klasická pohádka o třech prasátkách a velkém zlém vlkovi v podání loutkového divadla LokVar. Ručně vyřezávané marionety, poctivé řemeslo a spousta legrace – představení, které pobaví děti i dospělé a připomene kouzlo tradičního loutkářství.",
     image: prasatkaImg,
+    confirmed: false,
   },
   {
     name: "Lesní klub Jasan",
@@ -135,6 +167,7 @@ const kidsProgram: Artist[] = [
     description:
       "Lesní klub Jasan si pro děti připraví hravé dílničky v duchu přírody. Tvoření z přírodnin, poznávání rostlin a zvířat, hry a dobrodružství pod širým nebem. Objevování světa všemi smysly pro malé průzkumníky.",
     image: jasanImg,
+    confirmed: false,
   },
   {
     name: "Eva Kroupová a Jakub Hejdánek",
@@ -142,6 +175,7 @@ const kidsProgram: Artist[] = [
     description:
       "Písničky a pohádky pro nejmenší v podání Evy Kroupové a Jakuba Hejdánka. Chytlavé melodie, vyprávění a společné zpívání, do kterého se zapojí celá rodina. Pohodové odpoledne plné radosti pro děti i rodiče.",
     image: kubaImg,
+    confirmed: false,
   },
   {
     name: "Dětský program",
@@ -149,6 +183,7 @@ const kidsProgram: Artist[] = [
     description:
       "Výstava traktorů, slámová hora, pletení věnců, malování na obličej, skákací hrad, dobrůtky.",
     image: detskyImg,
+    confirmed: false,
   },
 ];
 
@@ -252,6 +287,24 @@ const ScheduleTimeline = () => (
   </div>
 );
 
+// Placeholder karta "Připravujeme" – vyplní line-up, dokud
+// nejsou potvrzení další interpreti. Počet řídí festivalConfig.lineupPlaceholders.
+const PlaceholderCard = ({ index }: { index: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay: index * 0.05 }}
+    className="group relative overflow-hidden rounded-2xl aspect-[3/4] sm:aspect-[4/5] md:aspect-square lg:aspect-[4/3] border-2 border-dashed border-slate-300 bg-slate-100 flex items-center justify-center"
+  >
+    <div className="text-center text-slate-400 px-6">
+      <Music className="w-10 h-10 mx-auto mb-3" strokeWidth={1.5} />
+      <p className="font-display text-xl font-bold text-slate-500">Připravujeme</p>
+      <p className="text-sm mt-1">Brzy odhalíme další jména</p>
+    </div>
+  </motion.div>
+);
+
 type ArtistCardProps = {
   artist: Artist;
   index: number;
@@ -352,8 +405,18 @@ export const Lineup = () => {
     string | null
   >(null);
 
-  const headliners = artists.filter((a) => a.headliner);
-  const others = artists.filter((a) => !a.headliner);
+  // Zobrazují se jen potvrzení interpreti (confirmed: true).
+  const confirmed = artists.filter((a) => a.confirmed);
+  const headliners = confirmed.filter((a) => a.headliner);
+  const others = confirmed.filter((a) => !a.headliner);
+
+  const confirmedKids = kidsProgram.filter((a) => a.confirmed);
+
+  // Doplňkové "Připravujeme" karty (počet z configu).
+  const placeholders = Array.from(
+    { length: Math.max(0, festivalConfig.lineupPlaceholders) },
+    (_, i) => i
+  );
 
   const renderCard = (artist: Artist, index: number) => (
     <ArtistCard
@@ -371,41 +434,50 @@ export const Lineup = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Line-up 2026
+            Line-up {festivalConfig.year}
           </h2>
           <p className="text-slate-600 text-lg max-w-2xl mx-auto">
-            Připravili jsme pro vás pestrý mix žánrů. Od popu
-            přes hip hop až po folk a indie rock.
+            Line-up postupně odhalujeme. Sledujte nás – další jména
+            přidáme už brzy!
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {headliners.map(renderCard)}
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-          {others.map(renderCard)}
-        </div>
-
-        <div className="mb-20">
-          <div className="text-center mb-10">
-            <h3 className="font-display text-3xl md:text-4xl font-bold text-slate-900">
-              Časový harmonogram
-            </h3>
-            <p className="text-slate-600 mt-2">
-              Sobota 25. července 2026
-            </p>
+        {headliners.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {headliners.map(renderCard)}
           </div>
-          <ScheduleTimeline />
-          <div className="flex items-center justify-center gap-6 mt-6 text-sm text-slate-600">
-            <span className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-orange-600" /> Stage
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-green-500" /> Stan
-            </span>
+        )}
+
+        {(others.length > 0 || placeholders.length > 0) && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+            {others.map(renderCard)}
+            {placeholders.map((i) => (
+              <PlaceholderCard key={`ph-${i}`} index={others.length + i} />
+            ))}
           </div>
-        </div>
+        )}
+
+        {festivalConfig.showSchedule && (
+          <div className="mb-20">
+            <div className="text-center mb-10">
+              <h3 className="font-display text-3xl md:text-4xl font-bold text-slate-900">
+                Časový harmonogram
+              </h3>
+              <p className="text-slate-600 mt-2">
+                {festivalConfig.dateLong}
+              </p>
+            </div>
+            <ScheduleTimeline />
+            <div className="flex items-center justify-center gap-6 mt-6 text-sm text-slate-600">
+              <span className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-orange-600" /> Stage
+              </span>
+              <span className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-green-500" /> Stan
+              </span>
+            </div>
+          </div>
+        )}
 
         <div className="bg-orange-50 rounded-3xl p-8 md:p-12">
           <div className="text-center mb-10">
@@ -416,9 +488,17 @@ export const Lineup = () => {
               Zábava pro celou rodinu
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {kidsProgram.map(renderCard)}
-          </div>
+          {confirmedKids.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {confirmedKids.map(renderCard)}
+            </div>
+          ) : (
+            <p className="text-center text-slate-500 max-w-xl mx-auto">
+              Dětský program pro ročník {festivalConfig.year} právě
+              chystáme. Brzy tu najdete kapely, divadla i tvořivé dílny
+              pro celou rodinu.
+            </p>
+          )}
         </div>
       </div>
     </section>

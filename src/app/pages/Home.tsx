@@ -22,7 +22,7 @@ import gallery13 from '../../assets/gallery/bigbos-2024-13.jpg';
 
 // === EDITOVATELNÝ OBSAH GALERIE ===
 const galleryContent = {
-  title: 'Jaký byl Bigboš 2025?',
+  title: 'Jaký byl Bigboš 2026?',
   videoSubtitle: 'Video ohlédnutí',
   photos: [
     { src: gallery1, alt: 'Bigboš festival 2024 - atmosféra', wide: false },

@@ -2,14 +2,18 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Calendar, MapPin, ArrowDown } from 'lucide-react';
 import { Button } from './ui/button';
+import { festivalConfig } from '../config/festival';
 
 // === EDITOVATELNÝ OBSAH HERO SEKCE ===
 const heroContent = {
+  eyebrow: `${festivalConfig.edition}. ročník`,
   title: 'Bigboš Křinice',
   subtitle: 'Hudební festival na statku s jedinečnou atmosférou uprostřed Křinic a přírody Broumovska.',
-  date: '25. 7. 2026',
+  date: festivalConfig.date,
   location: 'Křinice 6 - statek',
-  ctaLabel: 'Koupit Vstupenky',
+  // CTA label se přepíná podle toho, zda běží předprodej (festivalConfig.ticketsOnSale)
+  ctaLabelOnSale: 'Koupit Vstupenky',
+  ctaLabelSoon: 'Vstupenky brzy',
   scrollLabel: 'Line-up',
   backgroundImage:
     'https://images.unsplash.com/photo-1761926826313-a1787661b7b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtdXNpYyUyMGZlc3RpdmFsJTIwc3VtbWVyJTIwb3V0ZG9vciUyMGNyb3dkJTIwY29uY2VydHxlbnwxfHx8fDE3NjQ4NDQ3MTJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
@@ -35,6 +39,9 @@ export const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
+          <span className="inline-block mb-6 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-orange-300 text-sm font-bold uppercase tracking-widest">
+            {heroContent.eyebrow}
+          </span>
           <h1 className="font-display text-6xl md:text-8xl font-black tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-pink-600">
             {heroContent.title}
           </h1>
@@ -65,7 +72,9 @@ export const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 text-white text-lg px-10 py-6 rounded-full shadow-lg shadow-orange-600/30 transform hover:scale-105 transition-all duration-300">
-            <a href="#tickets">{heroContent.ctaLabel}</a>
+            <a href="#tickets">
+              {festivalConfig.ticketsOnSale ? heroContent.ctaLabelOnSale : heroContent.ctaLabelSoon}
+            </a>
           </Button>
         </motion.div>
       </div>
